@@ -7,17 +7,17 @@ import {Automation} from "../src/Automation.sol";
 
 /**
 * @dev forge script Automation_deploy \
-        --rpc-url $BSC_RPC --broadcast \
-        --verify --etherscan-api-key $BSC_KEY \
+        --rpc-url $SEPOLIA_RPC --broadcast \
+        --verify --etherscan-api-key $ETH_KEY \
         -vvvv --optimize --optimizer-runs 20000 -w
 *
 * @dev If verification fails:
 * forge verify-contract \
-    --chain 97 \
+    --chain 11155111 \
     --num-of-optimizations 20000 \
     --compiler-version v0.8.17+commit.87f61d96 \
     --watch 0xb7DEBdA47C1014763188E69fc823B973eC1749D6 \
-    IGO $BSC_KEY
+    IGO $ETH_KEY
 *
 * @dev VRFCoordinatorV2Interface: https://docs.chain.link/docs/vrf-contracts/
 */
@@ -29,7 +29,7 @@ contract Automation_deploy is Script {
         uint256 privateKey = vm.deriveKey(SEED, 0); // address at index 0
         vm.startBroadcast(privateKey);
 
-        new Automation();
+        new Automation(1);
 
         vm.stopBroadcast();
     }

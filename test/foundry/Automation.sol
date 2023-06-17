@@ -9,7 +9,7 @@ contract Automation_test is Test {
     Automation public instance;
 
     function setUp() public {
-        instance = new Automation();
+        instance = new Automation(1);
     }
 
     function test_truthy() public {
